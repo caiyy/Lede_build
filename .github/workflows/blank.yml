@@ -113,6 +113,8 @@ jobs:
         # ========================固件定制部分结束========================
         # 
         sed -i 's/^[ \t]*//g' .config
+    - name: SSH connection to Actions
+      uses: P3TERX/debugger-action@master
     - uses: actions/checkout@master
     - name: 上传配置文件
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
