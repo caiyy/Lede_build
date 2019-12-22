@@ -163,6 +163,11 @@ jobs:
         cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc)
+    - name: 单线程编译固件
+      if: failure()
+      run: |
+        cd openwrt
+        make -j1 V=s
     - name: 只打包特定固件
       run: |
         sudo rm -rf /artifact/
