@@ -153,7 +153,16 @@ jobs:
         make defconfig
 #    - name: SSH connection to Actions
 #      uses: P3TERX/debugger-action@master
-      
+    - name: 下载固件包(Download package)
+      run: |
+        cd openwrt && make download -j8
+        find dl -size -1024c -exec ls -l {} \;
+        find dl -size -1024c -exec rm -f {} \;
+    - name: 多线程编译固件
+      run: |
+        cd openwrt
+        echo -e "$(nproc) thread compile"
+        make -j$(nproc)
     - name: 只打包特定固件
       run: |
         rm -rf /artifact/
