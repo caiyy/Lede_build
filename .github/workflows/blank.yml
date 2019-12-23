@@ -38,18 +38,22 @@ jobs:
         REPO_BRANCH: master
       run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
-    - name: 涡轮增雕进程,添加Argon最新版主题
+    - name: 创建第三方插件目录
+      run: cd openwrt/package && mkdir openwrt-packages
+
+    - name: 删除原Argon主题,添加Argon最新版主题
       run: |
         sudo rm -rf openwrt/package/lean/luci-theme-argon
-        cd openwrt/package
-        mkdir openwrt-packages
-        cd openwrt-packages
+        cd openwrt/package/openwrt-packages
         git clone https://github.com/jerrykuku/luci-theme-argon.git
+    - name: 添加Server酱,微信推送插件
+      run: cd openwrt/package/openwrt-packages && git clone https://github.com/tty228/luci-app-serverchan
+      
     - name: 更新源(Update feeds)
       run: cd openwrt && ./scripts/feeds update -a
-
     - name: 安装源(Install feeds)
       run: cd openwrt && ./scripts/feeds install -a
+      
     - name: 删除verysync
       run: |
         sudo rm -rf openwrt/package/lean/verysync
@@ -129,6 +133,7 @@ jobs:
         CONFIG_PACKAGE_luci-app-attendedsysupgrade=y
         CONFIG_PACKAGE_luci-app-dnspod=y
         CONFIG_PACKAGE_luci-app-nlbwmon=y
+        CONFIG_PACKAGE_luci-app-serverchan=y
         EOF
         # LuCI主题:
         cat >> .config <<EOF
@@ -188,6 +193,6 @@ jobs:
       env:
         FTP_SERVER: git.caiyy.cn
         FTP_USERNAME: git_caiyy_cn
-        FTP_PASSWORD: yangyong1229
+        FTP_PASSWORD: git_caiyy_cn_123
         LOCAL_DIR: ./artifact/
         # ARGS: --delete
