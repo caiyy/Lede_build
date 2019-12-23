@@ -212,3 +212,17 @@ jobs:
     - name: 通知FTP上传完成
       run: |
         curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=固件上传完成!" "http://wxpusher.zjiecode.com/api/send/message/"
+
+
+
+    - name: 上传固件到路由器
+      uses: SamKirkland/FTP-Deploy-Action@2.0.0
+      env:
+        FTP_SERVER: qh.caiyy.vip
+        FTP_USERNAME: root
+        FTP_PASSWORD: password
+        LOCAL_DIR: ./artifact/
+        # ARGS: --delete
+    - name: 通知路由器固件上传完成
+      run: |
+        curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=固件上传到路由器完成!" "http://wxpusher.zjiecode.com/api/send/message/"
