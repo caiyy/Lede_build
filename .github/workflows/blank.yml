@@ -50,6 +50,10 @@ jobs:
 
     - name: 安装源(Install feeds)
       run: cd openwrt && ./scripts/feeds install -a
+    - name: 删除verysync
+      run: |
+        sudo rm -rf openwrt/package/lean/verysync
+        sudo rm -rf openwrt/package/lean/luci-app-verysync
     - name: 创建配置文件 (Costom configure file)
       run: |
         # mk openwrt
