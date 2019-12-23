@@ -20,6 +20,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=正在初始化环境.
         echo "正在删除文件,请稍等..."
         sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d/*
         sudo swapoff /swapfile
@@ -36,23 +37,26 @@ jobs:
       env: 
         REPO_URL: https://github.com/coolsnowwolf/lede
         REPO_BRANCH: master
-      run: git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
+      run: |
+        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=拉取最新的代码
+        git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
     - name: 创建第三方插件目录
       run: cd openwrt/package && mkdir openwrt-packages
 
     - name: 删除原Argon主题,添加Argon最新版主题
       run: |
+        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=删除原Argon主题,添加Argon最新版主题
         sudo rm -rf openwrt/package/lean/luci-theme-argon
         cd openwrt/package/openwrt-packages
         git clone https://github.com/jerrykuku/luci-theme-argon.git
     - name: 添加Server酱,微信推送插件
-      run: cd openwrt/package/openwrt-packages && git clone https://github.com/tty228/luci-app-serverchan
+      run: |
+        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=添加Server酱,微信推送插件
+        cd openwrt/package/openwrt-packages && git clone https://github.com/tty228/luci-app-serverchan
       
     - name: 更新源(Update feeds)
-      run: cd openwrt && ./scripts/feeds update -a
-    - name: 安装源(Install feeds)
-      run: cd openwrt && ./scripts/feeds install -a
+      run: cd openwrt && ./scripts/feeds update -a && ./scripts/feeds install -a
       
     - name: 删除verysync
       run: |
@@ -60,6 +64,7 @@ jobs:
         sudo rm -rf openwrt/package/lean/luci-app-verysync
     - name: 创建配置文件 (Costom configure file)
       run: |
+        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=正在创建配置文件
         # mk openwrt
         cd openwrt
         rm -f ./.config*
@@ -169,6 +174,7 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
     - name: 多线程编译固件
       run: |
+        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=正在编译.
         cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc)
@@ -177,6 +183,7 @@ jobs:
     - name: 单线程编译固件
       if: failure()
       run: |
+        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=多线程编译失败,正在尝试单线程编译.
         cd openwrt
         make -j1 V=s
     - name: 只打包特定固件
@@ -201,5 +208,4 @@ jobs:
         # ARGS: --delete
     - name: 通知FTP上传完成
       run: |
-        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=g固件上传完成!
-        wget http://sc.ftqq.com/webhook/923-5e011e0b6d949
+        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=固件上传完成!
