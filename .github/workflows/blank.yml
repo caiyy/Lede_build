@@ -22,7 +22,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=正在初始化环境.
+        curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=正在初始化编译环境." "http://wxpusher.zjiecode.com/api/send/message/"
         echo "正在删除文件,请稍等..."
         sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d/*
         sudo swapoff /swapfile
@@ -40,7 +40,7 @@ jobs:
         REPO_URL: https://github.com/coolsnowwolf/lede
         REPO_BRANCH: master
       run: |
-        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=拉取最新的代码
+        curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=拉取最新的代码" "http://wxpusher.zjiecode.com/api/send/message/"
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
     - name: 创建第三方插件目录
@@ -48,13 +48,13 @@ jobs:
 
     - name: 删除原Argon主题,添加Argon最新版主题
       run: |
-        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=删除原Argon主题,添加Argon最新版主题
+        curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=删除原Argon主题,添加Argon最新版主题" "http://wxpusher.zjiecode.com/api/send/message/"
         sudo rm -rf openwrt/package/lean/luci-theme-argon
         cd openwrt/package/openwrt-packages
         git clone https://github.com/jerrykuku/luci-theme-argon.git
     - name: 添加Server酱,微信推送插件
       run: |
-        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=添加Server酱,微信推送插件
+        curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=添加Server酱,微信推送插件" "http://wxpusher.zjiecode.com/api/send/message/"
         cd openwrt/package/openwrt-packages && git clone https://github.com/tty228/luci-app-serverchan
       
     - name: 更新源(Update feeds)
@@ -66,7 +66,7 @@ jobs:
         sudo rm -rf openwrt/package/lean/luci-app-verysync
     - name: 创建配置文件 (Costom configure file)
       run: |
-        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=正在创建配置文件
+        curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=正在创建配置文件" "http://wxpusher.zjiecode.com/api/send/message/"
         # mk openwrt
         cd openwrt
         rm -f ./.config*
@@ -148,15 +148,15 @@ jobs:
         CONFIG_PACKAGE_luci-theme-argon=y
         EOF
         # 常用软件包:
-        # cat >> .config <<EOF
-        # CONFIG_PACKAGE_curl=y
-        # CONFIG_PACKAGE_htop=y
-        # CONFIG_PACKAGE_nano=y
-        # CONFIG_PACKAGE_screen=y
-        # CONFIG_PACKAGE_tree=y
-        # CONFIG_PACKAGE_vim-fuller=y
-        # CONFIG_PACKAGE_wget=y
-        # EOF
+        cat >> .config <<EOF
+        CONFIG_PACKAGE_curl=y
+        CONFIG_PACKAGE_htop=y
+        CONFIG_PACKAGE_nano=y
+        CONFIG_PACKAGE_screen=y
+        CONFIG_PACKAGE_tree=y
+        CONFIG_PACKAGE_vim-fuller=y
+        CONFIG_PACKAGE_wget=y
+        EOF
         # 取消编译VMware镜像以及镜像填充 (不要删除被缩进的注释符号):
         cat >> .config <<EOF
         # CONFIG_TARGET_IMAGES_PAD is not set
@@ -176,16 +176,16 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
     - name: 多线程编译固件
       run: |
-        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=正在编译.
+        curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=正在编译." "http://wxpusher.zjiecode.com/api/send/message/"
         cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc)
     - name: 通知编译完成
-      run: wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=固件编译完成!
+      run: curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=固件编译完成!" "http://wxpusher.zjiecode.com/api/send/message/"
     - name: 单线程编译固件
       if: failure()
       run: |
-        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=多线程编译失败,正在尝试单线程编译.
+        curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=多线程编译失败,正在尝试单线程编译." "http://wxpusher.zjiecode.com/api/send/message/"
         cd openwrt
         make -j1 V=s
     - name: 只打包特定固件
@@ -199,7 +199,7 @@ jobs:
         name: X64
         path: ./artifact/
     - name: 通知上传FTP服务器
-      run: wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=正在上传到FTP服务器!
+      run: curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=正在上传到FTP服务器!" "http://wxpusher.zjiecode.com/api/send/message/"
     - name: 上传固件到FTP服务器
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
       env:
@@ -210,4 +210,4 @@ jobs:
         # ARGS: --delete
     - name: 通知FTP上传完成
       run: |
-        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=固件上传完成!
+        curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=固件上传完成!" "http://wxpusher.zjiecode.com/api/send/message/"
