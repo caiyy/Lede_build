@@ -14,6 +14,8 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
+    - name: 开始工作了
+      run: wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=开始工作了.
     - name: Checkout
       uses: actions/checkout@master
     - name: 初始化编译环境
