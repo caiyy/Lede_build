@@ -15,14 +15,14 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: 开始工作了
-      run: wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=开始工作了.
+      run: wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=开始工作了.
     - name: Checkout
       uses: actions/checkout@master
     - name: 初始化编译环境
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=正在初始化环境.
+        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=正在初始化环境.
         echo "正在删除文件,请稍等..."
         sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d/*
         sudo swapoff /swapfile
@@ -40,7 +40,7 @@ jobs:
         REPO_URL: https://github.com/coolsnowwolf/lede
         REPO_BRANCH: master
       run: |
-        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=拉取最新的代码
+        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=拉取最新的代码
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
 
     - name: 创建第三方插件目录
@@ -48,13 +48,13 @@ jobs:
 
     - name: 删除原Argon主题,添加Argon最新版主题
       run: |
-        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=删除原Argon主题,添加Argon最新版主题
+        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=删除原Argon主题,添加Argon最新版主题
         sudo rm -rf openwrt/package/lean/luci-theme-argon
         cd openwrt/package/openwrt-packages
         git clone https://github.com/jerrykuku/luci-theme-argon.git
     - name: 添加Server酱,微信推送插件
       run: |
-        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=添加Server酱,微信推送插件
+        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=添加Server酱,微信推送插件
         cd openwrt/package/openwrt-packages && git clone https://github.com/tty228/luci-app-serverchan
       
     - name: 更新源(Update feeds)
@@ -66,7 +66,7 @@ jobs:
         sudo rm -rf openwrt/package/lean/luci-app-verysync
     - name: 创建配置文件 (Costom configure file)
       run: |
-        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=正在创建配置文件
+        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=正在创建配置文件
         # mk openwrt
         cd openwrt
         rm -f ./.config*
@@ -176,16 +176,16 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
     - name: 多线程编译固件
       run: |
-        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=正在编译.
+        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=正在编译.
         cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc)
     - name: 通知编译完成
-      run: wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=固件编译完成!
+      run: wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=固件编译完成!
     - name: 单线程编译固件
       if: failure()
       run: |
-        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=多线程编译失败,正在尝试单线程编译.
+        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=多线程编译失败,正在尝试单线程编译.
         cd openwrt
         make -j1 V=s
     - name: 只打包特定固件
@@ -199,7 +199,7 @@ jobs:
         name: X64
         path: ./artifact/
     - name: 通知上传FTP服务器
-      run: wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=正在上传到FTP服务器!
+      run: wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=正在上传到FTP服务器!
     - name: 上传固件到FTP服务器
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
       env:
@@ -210,4 +210,4 @@ jobs:
         # ARGS: --delete
     - name: 通知FTP上传完成
       run: |
-        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=固件上传完成!
+        wget http://wxpusher.zjiecode.com/api/send/message/?appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=固件上传完成!
