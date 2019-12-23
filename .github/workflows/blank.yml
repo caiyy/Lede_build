@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: 开始工作了
-      run: curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow&content=开始工作了" "http://wxpusher.zjiecode.com/api/send/message/"
+      run: curl -v -L -G "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7&uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=开始工作了" "http://wxpusher.zjiecode.com/api/send/message/"
     - name: Checkout
       uses: actions/checkout@master
     - name: 初始化编译环境
