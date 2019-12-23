@@ -172,6 +172,8 @@ jobs:
         cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc)
+    - name: 通知编译完成
+      run: wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=固件编译完成!
     - name: 单线程编译固件
       if: failure()
       run: |
@@ -187,7 +189,8 @@ jobs:
       with:
         name: X64
         path: ./artifact/
-      
+    - name: 通知上传FTP服务器
+      run: wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=正在上传到FTP服务器!
     - name: 上传固件到FTP服务器
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
       env:
@@ -196,3 +199,7 @@ jobs:
         FTP_PASSWORD: git_caiyy_cn_123
         LOCAL_DIR: ./artifact/
         # ARGS: --delete
+    - name: 通知FTP上传完成
+      run: |
+        wget https://sc.ftqq.com/SCU1647Tacff502261567d93e0268a70adc3930e57d6af6393e72.send?text=g固件上传完成!
+        wget http://sc.ftqq.com/webhook/923-5e011e0b6d949
