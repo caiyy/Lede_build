@@ -219,6 +219,7 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
       env:
         FTP_SERVER: qh.caiyy.vip
+        PORT: 821
         FTP_USERNAME: root
         FTP_PASSWORD: password
         LOCAL_DIR: ./artifact/
