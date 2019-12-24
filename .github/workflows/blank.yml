@@ -182,7 +182,7 @@ jobs:
         echo -e "$(nproc) thread compile"
         make -j$(nproc)
     - name: 通知编译完成
-      run: curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=固件编译完成!" "http://wxpusher.zjiecode.com/api/send/message/"
+      run: curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=固件编译完成!预计编译时长2小时30分钟.请耐心等待." "http://wxpusher.zjiecode.com/api/send/message/"
     - name: 单线程编译固件
       if: failure()
       run: |
