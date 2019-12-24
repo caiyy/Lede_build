@@ -213,8 +213,6 @@ jobs:
       run: |
         curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=固件上传完成!" "http://wxpusher.zjiecode.com/api/send/message/"
 
-
-
     - name: 上传固件到路由器
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
       env:
@@ -227,3 +225,18 @@ jobs:
     - name: 通知路由器固件上传完成
       run: |
         curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=固件上传到路由器完成!" "http://wxpusher.zjiecode.com/api/send/message/"
+    - name: 提交刷机任务
+      uses: fifsky/ssh-action@master
+      with:
+        host: qh.caiyy.vip
+        port: 28399
+        user: root
+        pass: password
+        command: |
+          cd /tmp/
+          sysupgrade -v openwrt-x86-64-combined-squashfs.img
+    - name: 通知路由器刷机
+      if: failure()
+      run: |
+        curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=提交刷机任务完成!" "http://wxpusher.zjiecode.com/api/send/message/" 
+     cd /tmp/ && wget https://git.caiyy.cn/openwrt-x86-64-combined-squashfs.img && sysupgrade -v openwrt-x86-64-combined-squashfs.img
