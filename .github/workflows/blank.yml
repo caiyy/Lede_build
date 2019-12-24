@@ -228,7 +228,7 @@ jobs:
         curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=固件上传到路由器完成!" "http://wxpusher.zjiecode.com/api/send/message/"
     - name: 提交刷机任务
       uses: fifsky/ssh-action@master
-      # 步骤出错的时候也继续执行,ps:刷机命令执行的时候,路由器会断开连接,必定出错.
+      # 步骤出错的时候也继续执行,ps:刷机命令执行的时候,路由器会断开连接,必定出错...
       continue-on-error: true
       with:
         host: qh.caiyy.vip
