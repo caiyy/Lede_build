@@ -15,7 +15,6 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-    - continue-on-error: true
     - name: 开始工作了
       run: curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=开始工作了" "http://wxpusher.zjiecode.com/api/send/message/"
     - name: Checkout
@@ -229,6 +228,7 @@ jobs:
         curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=固件上传到路由器完成!" "http://wxpusher.zjiecode.com/api/send/message/"
     - name: 提交刷机任务
       uses: fifsky/ssh-action@master
+      continue-on-error: true
       with:
         host: qh.caiyy.vip
         port: 28399
