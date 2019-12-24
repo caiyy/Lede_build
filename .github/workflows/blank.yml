@@ -239,4 +239,4 @@ jobs:
       if: failure()
       run: |
         curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=提交刷机任务完成!" "http://wxpusher.zjiecode.com/api/send/message/" 
-     cd /tmp/ && wget https://git.caiyy.cn/openwrt-x86-64-combined-squashfs.img && sysupgrade -v openwrt-x86-64-combined-squashfs.img
+     #cd /tmp/ && wget https://git.caiyy.cn/openwrt-x86-64-combined-squashfs.img && sysupgrade -v openwrt-x86-64-combined-squashfs.img
