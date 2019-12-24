@@ -199,15 +199,15 @@ jobs:
       with:
         name: X64
         path: ./artifact/
-    - name: 通知上传FTP服务器
-      run: curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=正在上传到FTP服务器!" "http://wxpusher.zjiecode.com/api/send/message/"
-    - name: 上传固件到FTP服务器
-      uses: SamKirkland/FTP-Deploy-Action@2.0.0
-      env:
-        FTP_SERVER: git.caiyy.cn
-        FTP_USERNAME: git_caiyy_cn
-        FTP_PASSWORD: git_caiyy_cn_123
-        LOCAL_DIR: ./artifact/
+#    - name: 通知上传FTP服务器
+#      run: curl -v -L -G --data-urlencode "appToken=AT_2sglAI5eBgjhGZzXExWT6VoofdrtTdK7" --data-urlencode "uid=UID_OGDvSCXA767nI7nlidREXgxLn2Ow" --data-urlencode "content=正在上传到FTP服务器!" "http://wxpusher.zjiecode.com/api/send/message/"
+#    - name: 上传固件到FTP服务器
+#      uses: SamKirkland/FTP-Deploy-Action@2.0.0
+#      env:
+#        FTP_SERVER: git.caiyy.cn
+#        FTP_USERNAME: git_caiyy_cn
+#        FTP_PASSWORD: git_caiyy_cn_123
+#        LOCAL_DIR: ./artifact/
         # ARGS: --delete
     - name: 通知FTP上传完成
       run: |
