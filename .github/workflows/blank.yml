@@ -167,7 +167,6 @@ jobs:
         cd openwrt
         echo -e "$(nproc) thread compile"
         make -j$(nproc)
-    - name: 通知编译完成
     - name: 单线程编译固件
       if: failure()
       run: |
