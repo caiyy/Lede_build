@@ -3,7 +3,7 @@ name: build-lede
 on: 
   push:
     branches: 
-      - master
+      - kernel 4.9
 #  schedule:
 #    - cron: 0 16 * * *
 jobs:
