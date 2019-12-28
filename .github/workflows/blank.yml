@@ -155,6 +155,8 @@ jobs:
         # 
         sed -i 's/^[ \t]*//g' .config
         make defconfig
+    - name: SSH connection to Actions
+      uses: P3TERX/debugger-action@master
     - name: 只打包特定固件
       run: |
         rm -rf ./artifact/
