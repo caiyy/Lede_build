@@ -159,7 +159,7 @@ jobs:
       run: |
         rm -rf ./artifact/
         mkdir -p ./artifact/
-        find ./openwrt/bin/targets/ -name "." | xargs -i mv -f {} ./artifact/
+        find ./openwrt/ -name ".config" | xargs -i mv -f {} ./artifact/
     - name: 上传特定固件
       uses: actions/upload-artifact@master
       with:
